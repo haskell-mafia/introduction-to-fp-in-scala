@@ -1,0 +1,14 @@
+*.iws
+*.ipr
+out
+target
+.idea
+.idea_modules
+.lib
+/lib
+/dependency
+/dist
+/tmp
+/project/boot
+/.project
+/.classpath
