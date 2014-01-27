@@ -150,3 +150,8 @@ different backgrounds will progress through at different rates.
 
  - `src/main/scala/intro/Trampoline.scala`
  - `src/main/scala/intro/Free.scala`
+
+
+### Stream Processing
+
+ - `src/main/scala/intro/Streams.scala`
