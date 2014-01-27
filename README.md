@@ -7,22 +7,75 @@ __note__: please test your environment before you arrive so we can get started q
 
 ## The Plan
 
+
+### Just enough scala
+
+`src/main/scala/intro/Scala.scala`
+
+
 ### What is functional programming?
 
+`src/main/scala/intro/Intro.scala`
 
-### Introduction to data structures and higher order functions with lists
 
+### Introduction to data structures and higher order functions
 
-### Errors without exceptions
+#### Examples
 
+ - `src/main/scala/intro/Person.scala`
+ - `src/main/scala/intro/Id.scala`
+ - `src/main/scala/intro/Optional.scala`
+
+#### Exercises
+
+ - Lists - `src/main/scala/intro/List.scala`
+ - Errors without exceptions - `src/main/scala/intro/Result.scala`
 
 ### Algebra for fun and profit
 
+ - `src/main/scala/intro/Monoid.scala`
+
+### Type Classes
+
+  - `src/main/scala/intro/Equal.scala`
 
 ### Property based testing
 
+ - Lists - `src/main/scala/intro/ListProperties.scala`
+ - Laws `src/main/scala/intro/MonoidProperties.scala`
+
+
+### Parsers
+
+`src/main/scala/intro/Parser.scala`
+
+
+### More data structures
+
+`src/main/scala/intro/Reader.scala`
+`src/main/scala/intro/Writer.scala`
+`src/main/scala/intro/State.scala`
+`src/main/scala/intro/Http.scala`
 
 ### Functors, Applicatives and Monads
+
+`src/main/scala/intro/Functor.scala`
+`src/main/scala/intro/Applicative.scala`
+`src/main/scala/intro/Monad.scala`
+
+
+### Monad Transformers
+
+`src/main/scala/intro/ReaderT.scala`
+`src/main/scala/intro/WriterT.scala`
+`src/main/scala/intro/StateT.scala`
+`src/main/scala/intro/MonadTrans.scala
+`src/main/scala/intro/HttpT.scala`
+
+
+### Freedom
+
+`src/main/scala/intro/Free.scala`
 
 
 ## Getting started

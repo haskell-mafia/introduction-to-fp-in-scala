@@ -1,0 +1,5 @@
+package course
+
+object Scala {
+
+}
