@@ -5,79 +5,6 @@ This is the base project for the workshop.
 __note__: please test your environment before you arrive so we can get started quickly on the day.
 
 
-## The Plan
-
-
-### Just enough scala
-
-`src/main/scala/intro/Scala.scala`
-
-
-### What is functional programming?
-
-`src/main/scala/intro/Intro.scala`
-
-
-### Introduction to data structures and higher order functions
-
-#### Examples
-
- - `src/main/scala/intro/Person.scala`
- - `src/main/scala/intro/Id.scala`
- - `src/main/scala/intro/Optional.scala`
-
-#### Exercises
-
- - Lists - `src/main/scala/intro/List.scala`
- - Errors without exceptions - `src/main/scala/intro/Result.scala`
-
-### Algebra for fun and profit
-
- - `src/main/scala/intro/Monoid.scala`
-
-### Type Classes
-
-  - `src/main/scala/intro/Equal.scala`
-
-### Property based testing
-
- - Lists - `src/main/scala/intro/ListProperties.scala`
- - Laws `src/main/scala/intro/MonoidProperties.scala`
-
-
-### Parsers
-
-`src/main/scala/intro/Parser.scala`
-
-
-### More data structures
-
-`src/main/scala/intro/Reader.scala`
-`src/main/scala/intro/Writer.scala`
-`src/main/scala/intro/State.scala`
-`src/main/scala/intro/Http.scala`
-
-### Functors, Applicatives and Monads
-
-`src/main/scala/intro/Functor.scala`
-`src/main/scala/intro/Applicative.scala`
-`src/main/scala/intro/Monad.scala`
-
-
-### Monad Transformers
-
-`src/main/scala/intro/ReaderT.scala`
-`src/main/scala/intro/WriterT.scala`
-`src/main/scala/intro/StateT.scala`
-`src/main/scala/intro/MonadTrans.scala
-`src/main/scala/intro/HttpT.scala`
-
-
-### Freedom
-
-`src/main/scala/intro/Free.scala`
-
-
 ## Getting started
 
 Before you attend you will need to get a few things
@@ -98,7 +25,7 @@ Getting scala and validating your environment (for unix):
 
     git clone https://github.com/markhibberd/introduction-to-fp-in-scala.git
     cd introduction-to-fp-in-scala
-    ./sbt /test:compile/
+    ./sbt "test:compile"
 
 
 Getting scala and validating your environment (for windows):
@@ -139,3 +66,87 @@ If you want to use ensime (after uncommenting ensime-sbt-cmd):
 Just note that if you choose eclipse or intellij, have a
 backup texteditor as well, because there won't be enough
 time to debug any editor issues.
+
+
+## The Plan
+
+There is about two weeks worth of material available, people with
+different backgrounds will progress through at different rates.
+
+
+### Just enough scala
+
+ - `src/main/scala/intro/Scala.scala`
+
+
+### What is functional programming?
+
+ - `src/main/scala/intro/Intro.scala`
+
+
+### Introduction to data structures and higher order functions
+
+#### Examples
+
+ - `src/main/scala/intro/Person.scala`
+ - `src/main/scala/intro/Id.scala`
+ - `src/main/scala/intro/Optional.scala`
+
+
+#### Exercises
+
+ - Lists - `src/main/scala/intro/List.scala`
+ - Errors without exceptions - `src/main/scala/intro/Result.scala`
+
+
+### Intro to Type Classes
+
+ - `src/main/scala/intro/Equal.scala`
+ - `src/main/scala/intro/Functor.scala`
+
+
+### Algebra for fun and profit
+
+ - `src/main/scala/intro/Monoid.scala`
+
+
+### Property based testing
+
+ - Lists - `src/main/scala/intro/ListProperties.scala`
+ - Laws `src/main/scala/intro/MonoidProperties.scala`
+
+
+### Parsers
+
+ - `src/main/scala/intro/Parser.scala`
+
+
+### Zippers
+
+ - `src/main/scala/intro/Zippers.scala`
+
+
+### Lenses
+
+ - `src/main/scala/intro/Lens.scala`
+
+
+### Patterns in Types
+
+ - `src/main/scala/intro/Reader.scala`
+ - `src/main/scala/intro/Writer.scala`
+ - `src/main/scala/intro/State.scala`
+ - `src/main/scala/intro/Http.scala`
+ - `src/main/scala/intro/Applicative.scala`
+ - `src/main/scala/intro/Monad.scala`
+ - `src/main/scala/intro/ReaderT.scala`
+ - `src/main/scala/intro/WriterT.scala`
+ - `src/main/scala/intro/StateT.scala`
+ - `src/main/scala/intro/MonadTrans.scala`
+ - `src/main/scala/intro/HttpT.scala`
+
+
+### Freedom
+
+ - `src/main/scala/intro/Trampoline.scala`
+ - `src/main/scala/intro/Free.scala`
