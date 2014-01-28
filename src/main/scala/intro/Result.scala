@@ -9,11 +9,10 @@ package intro
  * A well-typed set of errors that can occur.
  */
 sealed trait Error
-case class Explosion(exception: Throwable) extends Error
-case object NotFound extends Error
-case object InvalidRequest extends Error
-case object InvalidMethod extends Error
-case object Unauthorized extends Error
+case class NotANumber(s: String) extends Error
+case class InvalidOperation(s: String) extends Error
+case class UnexpectedInput(s: String) extends Error
+case object NotEnoughInput extends Error
 
 /*
  * A result type that represents one of our errors or a success.
@@ -35,7 +34,7 @@ sealed trait Result[A] {
    * scala> Ok(1).fold(_ => 0, x => x)
    *  = 1
    *
-   * scala> Fail(NotFound).fold(_ => 0, x => x)
+   * scala> Fail(NotEnoughInput).fold(_ => 0, x => x)
    *  = 0
    */
   def fold[X](
@@ -56,8 +55,8 @@ sealed trait Result[A] {
    * scala> Ok(1).map(x => x + 10)
    *  = Ok(11)
    *
-   * scala> Fail[Int](NotFound).map(x => x + 10)
-   *  = Fail(NotFound)
+   * scala> Fail[Int](NotEnoughInput).map(x => x + 10)
+   *  = Fail(NotEnoughInput)
    *
    * Advanced: Try using flatMap.
    */
@@ -78,11 +77,11 @@ sealed trait Result[A] {
    * scala> Ok(1).flatMap(x => Fail[Int](Unauthorized))
    *  = Fail(Unauthorized)
    *
-   * scala> Fail(NotFound).map(x => Ok(x + 10))
-   *  = Fail(NotFound)
+   * scala> Fail(NotEnoughInput).flatMap(x => Ok(x + 10))
+   *  = Fail(NotEnoughInput)
    *
-   * scala> Fail(NotFound).map(x => Fail(Unauthorized))
-   *  = Fail(NotFound)
+   * scala> Fail(NotEnoughInput).flatMap(x => Fail(UnexpectedInput("?")))
+   *  = Fail(NotEnoughInput)
    *
    * Advanced: Try using fold.
    */
@@ -94,11 +93,10 @@ sealed trait Result[A] {
    *
    * Extract the value if it is success case otherwise use default value.
    *
-   *
    * scala> Ok(1).getOrElse(10)
    *  = 1
    *
-   * scala> Fail(NotFound).getOrElse(10)
+   * scala> Fail(NotEnoughInput).getOrElse(10)
    *  = 10
    */
   def getOrElse(otherwise: => A): A =
@@ -116,10 +114,10 @@ sealed trait Result[A] {
    * scala> Ok(1) ||| Fail[Int](Unauthorized)
    *  = Ok(1)
    *
-   * scala> Fail[Int](NotFound) ||| Ok(10)
+   * scala> Fail[Int](NotEnoughInput) ||| Ok(10)
    *  = Ok(10)
    *
-   * scala> Fail[Int](NotFound) ||| Fail[Int](Unauthorized)
+   * scala> Fail[Int](NotEnoughInput) ||| Fail[Int](UnexpectedInput("?"))
    *  = Fail(Unauthorized)
    */
   def |||(alternative: => Result[A]): Result[A] =
@@ -127,78 +125,101 @@ sealed trait Result[A] {
 }
 
 object Result {
-  def fail[A](error: Error): Result[A] =
-    Fail(error)
+  def notANumber[A](s: String): Result[A] =
+    fail(NotANumber(s))
+
+  def unexpectedInput[A](s: String): Result[A] =
+    fail(UnexpectedInput(s))
+
+  def notEnoughInput[A]: Result[A] =
+    fail(NotEnoughInput)
 
   def ok[A](value: A): Result[A] =
     Ok(value)
+
+  def fail[A](error: Error): Result[A] =
+    Fail(error)
+
+  /*
+   * *Challenge* Exercise 6:
+   *
+   * Sequence a list of Result into an Result of Lists by producing
+   * Ok of a list of all the values or returning Fail on the first
+   * Fail case.
+   *
+   * scala> Lists.sequence(List[Result[Int]](Ok(1), Ok(2), Ok(3)))
+   * resX: Result[List[Int]] = Ok(List(1, 2, 3))
+   *
+   * scala> Lists.sequence(List[Result[Int]](Ok(1), Fail(NotEnoughInput), Ok(3)))
+   * resX: Result[List[Int]] = Fail(NotEnoughInput)
+   */
+  def sequence[A](xs: List[Option[A]]): Option[List[A]] =
+    ???
 }
 
 
 /*
- * *Challenge* Exercise 6: The worlds most trivial HTTP calculator.
+ * *Challenge* Exercise 7: The worlds most trivial calculator.
  *
- * We are implementing a way to compute a number via a HTTP like
- * API.
- *  - We will send a method which is one of GET|POST|PUT|DELETE.
- *  - We want to send an integer as a request body.
- *  - We will send a path of what calculation to use.
+ * We are implementing a way to compute a number on the command line.
+ *  - The first argument is the operation, that is one of +, - or *
+ *  - The second argument is an integer, n
+ *  - The third argument is an integer, m
  *
  * Complete the implementation, some of the methods are provided
  * with type signatures to get started.
  */
 object ResultExample {
 
-  /** Simplified method data type. */
-  sealed trait Method
-  case object Get extends Method
-  case object Post extends Method
-  case object Put extends Method
-  case object Delete extends Method
+  /** Simplified calculation data type. */
+  sealed trait Operation
+  case object Plus extends Operation
+  case object Minus extends Operation
+  case object Multiply extends Operation
 
   /*
-   * Parse the method if it is valid, otherwise fail with InvalidRequest.
+   * Parse an int if it is valid, otherwise fail with NotAnInt.
    *
    * Hint: Scala defines String#toInt, but warning it throws exceptions
-   *       if it is not a valid Int :|
+   *       if it is not a valid Int :| i.e. use try catch.
    */
-  def request(body: String): Result[Int] =
-    ???
-
-  /* Parse the method if it is valid, otherwise fail with InvalidMethod. */
-  def method(method: String): Result[Method] =
+  def int(body: String): Result[Int] =
     ???
 
   /*
-   * Route method and path to an implementation.
-   *
-   * A minimal implementation is:
-   *   GET /single -> n * 1
-   *   GET /double -> n * 2
-   *   GET /triple -> n * 3
-   *   PUT *       -> Unauthorized
-   *   POST *      -> Unauthorized
-   *   DELETE *    -> Unauthorized
-   *   *           -> NotFound
+   * Parse the operation if it is valid, otherwise fail with InvalidOperation.
    */
-  def route(method: Method, path: String): Result[Int => Int] =
+  def operation(op: String): Result[Operation] =
     ???
+
+  /*
+   * Compute an `answer`, by running operation for n and m.
+   */
+  def calculate(op: Operation, n: Int, m: Int): Int =
+     ???
 
   /*
    * Attempt to compute an `answer`, by:
-   *  - determining method
-   *  - selecting implementation
-   *  - determing request value
-   *  - using the implementation and request value to compute an answer.
+   *  - parsing operation
+   *  - parsing n
+   *  - parsing m
+   *  - running calculation
+   *
+   * hint: use flatMap / map
    */
-  def service(path: String, httpMethod: String, body: String): Result[Int] =
+  def attempt(op: String, n: String, m: String): Result[Int] =
      ???
 
-
   /*
-   * Sometimes we always an `answer`, so default to 0 if
-   * our request failed in any way.
+   * Run a calculation by pattern matching three elements off the input arguments,
+   * parsing the operation, a value for n and a value for m.
    */
-  def run(path: String, method: String, body: String): Int =
+  def run(args: List[String]): Result[Int] =
     ???
+
+  def main(args: Array[String]) =
+    println(run(args.toList) match {
+      case Ok(result) => s"result: ${result}"
+      case Fail(error) => s"failed: ${error}"
+    })
 }

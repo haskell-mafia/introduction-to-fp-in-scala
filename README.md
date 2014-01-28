@@ -77,6 +77,7 @@ different backgrounds will progress through at different rates.
 ### Just enough scala
 
  - `src/main/scala/intro/Scala.scala`
+ - `src/main/scala/intro/CheatSheet.scala`
 
 
 ### What is functional programming?
@@ -88,10 +89,8 @@ different backgrounds will progress through at different rates.
 
 #### Examples
 
- - `src/main/scala/intro/Person.scala`
  - `src/main/scala/intro/Id.scala`
  - `src/main/scala/intro/Optional.scala`
-
 
 #### Exercises
 
@@ -101,7 +100,12 @@ different backgrounds will progress through at different rates.
 
 ### Intro to Type Classes
 
+#### Example
+
  - `src/main/scala/intro/Equal.scala`
+
+#### Exercises
+
  - `src/main/scala/intro/Functor.scala`
 
 
@@ -109,49 +113,42 @@ different backgrounds will progress through at different rates.
 
  - `src/main/scala/intro/Monoid.scala`
 
-
 ### Property based testing
 
- - Lists - `src/main/scala/intro/ListProperties.scala`
- - Laws `src/main/scala/intro/MonoidProperties.scala`
-
+ - Lists: `src/test/scala/intro/ListProperties.scala`
+ - Laws: `src/test/scala/intro/MonoidProperties.scala`
 
 ### Parsers
 
- - `src/main/scala/intro/Parser.scala`
-
+ - `src/main/scala/challenge/Parser.scala`
 
 ### Zippers
 
- - `src/main/scala/intro/Zippers.scala`
-
+ - `src/main/scala/challenge/Zippers.scala`
 
 ### Lenses
 
- - `src/main/scala/intro/Lens.scala`
-
+ - `src/main/scala/challenge/Lens.scala` (TBD)
 
 ### Patterns in Types
 
- - `src/main/scala/intro/Reader.scala`
- - `src/main/scala/intro/Writer.scala`
- - `src/main/scala/intro/State.scala`
- - `src/main/scala/intro/Http.scala`
- - `src/main/scala/intro/Applicative.scala`
- - `src/main/scala/intro/Monad.scala`
- - `src/main/scala/intro/ReaderT.scala`
- - `src/main/scala/intro/WriterT.scala`
- - `src/main/scala/intro/StateT.scala`
- - `src/main/scala/intro/MonadTrans.scala`
- - `src/main/scala/intro/HttpT.scala`
-
+ - `src/main/scala/patterns/Reader.scala`
+ - `src/main/scala/patterns/Writer.scala`
+ - `src/main/scala/patterns/State.scala`
+ - `src/main/scala/patterns/Http.scala`
+ - `src/main/scala/patterns/Applicative.scala`
+ - `src/main/scala/patterns/Monad.scala`
+ - `src/main/scala/patterns/ReaderT.scala`
+ - `src/main/scala/patterns/WriterT.scala`
+ - `src/main/scala/patterns/StateT.scala`
+ - `src/main/scala/patterns/MonadTrans.scala`
+ - `src/main/scala/patterns/HttpT.scala`
 
 ### Freedom
 
- - `src/main/scala/intro/Trampoline.scala`
- - `src/main/scala/intro/Free.scala`
-
+ - `src/main/scala/challenge/Trampoline.scala` (TBD)
+ - `src/main/scala/challenge/Free.scala` (TBD)
 
 ### Stream Processing
 
- - `src/main/scala/intro/Streams.scala`
+ - `src/main/scala/challenge/Streams.scala` (TBD)

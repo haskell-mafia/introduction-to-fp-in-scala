@@ -1,11 +1,12 @@
 package intro
 
-object ListExercises {
+object Lists {
 
   /*
    *
    * The following examples are all based upon the 'List'
-   * data structure.
+   * data structure. We will be using the List implementation
+   * from the standard library.
    *
    * In scala this data structure looks like this:
    *
@@ -39,48 +40,44 @@ object ListExercises {
 
 
   /*
-   * Example 1:
+   * Exercise 1:
    *
    * Implement length using pattern matching.
    *
-   * scala> import warmup.Warmup._
-   * scala> length(List(1, 2, 3, 4))
+   * scala> Lists.length(List(1, 2, 3, 4))
    * resX: Int = 4
    */
   def length[A](xs: List[A]): Int =
     ???
 
   /*
-   * Example 2:
+   * Exercise 2:
    *
    * Implement length using foldRight.
    *
-   * scala> import warmup.Warmup._
-   * scala> lengthX(List(1, 2, 3, 4))
+   * scala> Lists.lengthX(List(1, 2, 3, 4))
    * resX: Int = 4
    */
   def lengthX[A](xs: List[A]): Int =
     ???
 
   /*
-   * Exercise: 3:
+   * Exercise 3:
    *
    * Append two lists to produce a new list.
    *
-   * scala> import warmup.Warmup._
-   * scala> append(List(1, 2, 3, 4), List(5, 6, 7, 8))
+   * scala> Lists.append(List(1, 2, 3, 4), List(5, 6, 7, 8))
    * resX: List[Int] = List(1, 2, 3, 4, 5, 6, 7, 8)
    */
   def append[A](x: List[A], y: List[A]): List[A] =
     ???
 
   /*
-   * Exercise: 4:
+   * Exercise 4:
    *
    * Map the given function across each element of the list.
    *
-   * scala> import warmup.Warmup._
-   * scala> map(List(1, 2, 3, 4))(x => x + 1)
+   * scala> Lists.map(List(1, 2, 3, 4))(x => x + 1)
    * resX: List[Int] = List(2, 3, 4, 5)
    *
    * ~~~ Syntax hint: type annotations
@@ -94,24 +91,22 @@ object ListExercises {
     ???
 
   /*
-   * Exercise: 5:
+   * Exercise 5:
    *
    * Return elements satisfying the given predicate.
    *
-   * scala> import warmup.Warmup._
-   * scala> filter(List(1, 2, 3, 4))(i => i < 3)
+   * scala> Lists.filter(List(1, 2, 3, 4))(i => i < 3)
    * resX: List[Int] = List(1, 2)
    */
   def filter[A](xs: List[A])(p: A => Boolean): List[A] =
     ???
 
   /*
-   * Exercise: 6:
+   * Exercise 6:
    *
    * Reverse a list to produce a new list.
    *
-   * scala> import warmup.Warmup._
-   * scala> reverse(List( 1, 2, 3, 4))
+   * scala> Lists.reverse(List( 1, 2, 3, 4))
    * resX: List[Int] = List(4, 3, 2, 1)
    *
    * ~~~ Syntax hint: type annotations
@@ -124,16 +119,44 @@ object ListExercises {
   def reverse[A](xs: List[A]): List[A] =
     ???
 
+
   /*
-   * *Challenge* Exercise: 7:
+   * *Challenge* Exercise 7:
    *
-   * Return a list of ranges.
+   * Sequence a list of Option into an Option of Lists by producing
+   * Some of a list of all the values or returning None on the first
+   * None case.
    *
-   * scala> import warmup.Warmup._
-   * scala> ranges(List(1, 2, 3, 4, 7, 8, 9, 10, 30, 40, 41))
+   * scala> Lists.sequence(List[Option[Int]](Some(1), Some(2), Some(3)))
+   * resX: Option[List[Int]] = Some(List(1, 2, 3))
+   *
+   * scala> Lists.sequence(List[Option[Int]](Some(1), None, Some(3)))
+   * resX: Option[List[Int]] = None
+   */
+  def sequence[A](xs: List[Option[A]]): Option[List[A]] =
+    ???
+
+  /*
+   * *Challenge* Exercise 8:
+   *
+   * Return a list of ranges. A range is a pair of values for which each
+   * intermediate value exists in the list.
+   *
+   *
+   * scala> Lists.ranges(List(1, 2, 3, 4, 7, 8, 9, 10, 30, 40, 41))
    * resX: List[(Int, Int)] = List((1, 4), (7, 10), (30, 30), (40, 41))
    *
-   * ~~~ library hint: use can just use List[A]#sorted to sort the list before you start.
+   * scala> Lists.ranges(List(1, 2, 3, 4))
+   * resX: List[(Int, Int)] = List((1, 4))
+   *
+   * scala> Lists.ranges(List(1, 2, 4))
+   * resX: List[(Int, Int)] = List((1, 2), List(4, 4))
+   *
+   * scala> Lists.ranges(List(2, 1, 3, 4, 9, 7, 8, 10, 30, 30, 4, 41))
+   * resX: List[(Int, Int)] = List((1, 4), (7, 10), (30, 30), (40, 41))
+   *
+   * ~~~ library hint: use can just use List[A]#sorted and/or List[A]#reverse to
+   *     get the list in the correct order.   *
    */
   def ranges(xs: List[Int]): List[(Int, Int)] =
     ???
