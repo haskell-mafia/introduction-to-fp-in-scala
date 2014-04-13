@@ -2,7 +2,7 @@ package intro
 
 /**
  * `Id` is one of the most basic parameterized types. It
- * is simply a countainer for some value `A`.
+ * is simply a container for some value `A`.
  */
 case class Id[A](value: A) {
 

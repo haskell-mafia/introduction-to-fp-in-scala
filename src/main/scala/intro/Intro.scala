@@ -38,7 +38,7 @@ object Intro {
 
 
  /*
-  * functional programming is progromming with functions....
+  * functional programming is programming with functions....
   */
 
 
@@ -262,11 +262,11 @@ object Intro {
 
 
  /*
-  * This really is it. Everything else is sugar (or vinegear
+  * This really is it. Everything else is sugar (or vinegar
   * depending on your perspective). At times things may seem
   * obtuse, but I ask you to suspend any disbelief, all we are
   * trying to do is approach programming with functions in a
-  * pervausive fashion.
+  * pervasive fashion.
   *
   * The rest of the exercises will start to give you an idea of
   * what this is like, it will show how using types can assist,
