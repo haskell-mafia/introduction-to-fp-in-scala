@@ -24,8 +24,8 @@ sealed trait Result[A] {
   /*
    * Exercise 1:
    *
-   * We often want to work with data structures be breaking them
-   * down by cases. With lists this operation is foldRight, for
+   * We often want to work with data structures by breaking them
+   * down by cases. With lists, this operation is foldRight. For
    * our result type this is just called fold. More formally we
    * refer to this as a catamorphism. Implement fold for Result.
    *
@@ -74,13 +74,13 @@ sealed trait Result[A] {
    * scala> Ok(1).flatMap(x => Ok(x + 10))
    *  = Ok(11)
    *
-   * scala> Ok(1).flatMap(x => Fail[Int](Unauthorized))
-   *  = Fail(Unauthorized)
-   *
-   * scala> Fail(NotEnoughInput).flatMap(x => Ok(x + 10))
+   * scala> Ok(1).flatMap(x => Fail[Int](NotEnoughInput))
    *  = Fail(NotEnoughInput)
    *
-   * scala> Fail(NotEnoughInput).flatMap(x => Fail(UnexpectedInput("?")))
+   * scala> Fail[Int](NotEnoughInput).flatMap(x => Ok(x + 10))
+   *  = Fail(NotEnoughInput)
+   *
+   * scala> Fail[Int](NotEnoughInput).flatMap(x => Fail[Int](UnexpectedInput("?")))
    *  = Fail(NotEnoughInput)
    *
    * Advanced: Try using fold.
@@ -111,14 +111,14 @@ sealed trait Result[A] {
    * scala> Ok(1) ||| Ok(10)
    *  = Ok(1)
    *
-   * scala> Ok(1) ||| Fail[Int](Unauthorized)
+   * scala> Ok(1) ||| Fail[Int](NotEnoughInput)
    *  = Ok(1)
    *
    * scala> Fail[Int](NotEnoughInput) ||| Ok(10)
    *  = Ok(10)
    *
    * scala> Fail[Int](NotEnoughInput) ||| Fail[Int](UnexpectedInput("?"))
-   *  = Fail(Unauthorized)
+   *  = Fail(NotEnoughInput)
    */
   def |||(alternative: => Result[A]): Result[A] =
     ???
