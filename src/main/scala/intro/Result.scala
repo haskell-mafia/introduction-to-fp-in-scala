@@ -34,7 +34,7 @@ sealed trait Result[A] {
    * scala> Ok(1).fold(_ => 0, x => x)
    *  = 1
    *
-   * scala> Fail(NotEnoughInput).fold(_ => 0, x => x)
+   * scala> Fail[Int](NotEnoughInput).fold(_ => 0, x => x)
    *  = 0
    */
   def fold[X](
