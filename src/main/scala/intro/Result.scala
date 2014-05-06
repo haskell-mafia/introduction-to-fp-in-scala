@@ -46,26 +46,6 @@ sealed trait Result[A] {
   /*
    * Exercise 2:
    *
-   * Implement map for Result[A].
-   *
-   * The following laws must hold:
-   *  1) r.map(z => z) == r
-   *  2) r.map(z => f(g(z))) == r.map(g).map(f)
-   *
-   * scala> Ok(1).map(x => x + 10)
-   *  = Ok(11)
-   *
-   * scala> Fail[Int](NotEnoughInput).map(x => x + 10)
-   *  = Fail(NotEnoughInput)
-   *
-   * Advanced: Try using flatMap.
-   */
-  def map[B](f: A => B): Result[B] =
-    ???
-
-  /*
-   * Exercise 3:
-   *
    * Implement flatMap (a.k.a. bind, a.k.a. >>=).
    *
    * The following law must hold:
@@ -86,6 +66,26 @@ sealed trait Result[A] {
    * Advanced: Try using fold.
    */
   def flatMap[B](f: A => Result[B]): Result[B] =
+    ???
+
+  /*
+   * Exercise 3:
+   *
+   * Implement map for Result[A].
+   *
+   * The following laws must hold:
+   *  1) r.map(z => z) == r
+   *  2) r.map(z => f(g(z))) == r.map(g).map(f)
+   *
+   * scala> Ok(1).map(x => x + 10)
+   *  = Ok(11)
+   *
+   * scala> Fail[Int](NotEnoughInput).map(x => x + 10)
+   *  = Fail(NotEnoughInput)
+   *
+   * Advanced: Try using flatMap.
+   */
+  def map[B](f: A => B): Result[B] =
     ???
 
   /*
