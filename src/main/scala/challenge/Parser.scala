@@ -52,7 +52,7 @@ case class Parser[A](run: String => Result[ParseState[A]]) {
    *
    *  - if the first parser succeeds then use this parser
    *
-   *  - if the second parser succeeds then try the second parser
+   *  - if the first parser fails then try the second parser
    */
   def |||(f: => Parser[A]): Parser[A] =
     ???
