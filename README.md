@@ -14,7 +14,7 @@ hopefully it is all straight forward, if not, send
 us an email via <mark@hibberd.id.au>.
 
 
-Pre requisuites.
+Pre-requisites.
 
  1. A valid install of java 6+
  2. git
