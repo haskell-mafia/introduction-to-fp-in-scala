@@ -264,10 +264,10 @@ object Parser {
    * producing all their results but fails on the first failing
    * parser of the list.
    *
-   * scala> Parser.sequence(List(Parser.char, Parser.char, Parser.char)).run("hello")
-   *  = Ok(ParseState(lo,hel))
+   * scala> Parser.sequence(List(Parser.character, Parser.character, Parser.character)).run("hello")
+   *  = Ok(ParseState(lo,List(h, e, l)))
    *
-   * scala> Parser.sequence(List(Parser.char, Parser.fail(NotEnoughInput), Parser.char)).run("hello")
+   * scala> Parser.sequence(List(Parser.character, (Parser.failed(NotEnoughInput): Parser[Char]), Parser.character)).run("hello")
    *  = Fail(NotEnoughInput)
    */
   def sequence[A](parsers: List[Parser[A]]): Parser[List[A]] =
@@ -279,10 +279,10 @@ object Parser {
    * attempt to produce the given number of values.
    *
    *
-   * scala> Parser.thisMany(5, Parser.char)).run("hello")
-   *  = Ok(ParseState(,hello))
+   * scala> Parser.thisMany(5, Parser.character).run("hello")
+   *  = Ok(ParseState(,List(h, e, l, l, o)))
    *
-   * scala> Parser.thisMany(6, Parser.char)).run("hello")
+   * scala> Parser.thisMany(6, Parser.character).run("hello")
    *  = Fail(NotEnoughInput)
    */
   def thisMany[A](n: Int, parse: Parser[A]): Parser[List[A]] =
@@ -339,7 +339,7 @@ object PersonParser {
    *
    *  <name> <age> <phone> <address>
    */
-  def personParser: Parser[String] =
+  def personParser: Parser[Person] =
     ???
 
   /**
@@ -355,9 +355,9 @@ object PersonParser {
     ???
 
   def Data = List(
-    "fred 32 123.456-1213# 301 cobblestone"
-  , "barney 31 123.456.1214# 303 cobblestone"
-  , "homer 39 555.123.939# 742 evergreen"
-  , "flanders 39 555.123.939# 744 evergreen"
+    "Fred 32 123.456-1213# 301 cobblestone"
+  , "Barney 31 123.456.1214# 303 cobblestone"
+  , "Homer 39 555.123.939# 742 evergreen"
+  , "Flanders 39 555.123.939# 744 evergreen"
   )
 }

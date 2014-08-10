@@ -25,8 +25,8 @@ case class Min(n: Int)
 case class Max(n: Int)
 case class Size(n: Int)
 case class Endo[A](f: A => A)
-case class First[A](first: A)
-case class Last[A](last: A)
+case class First[A](first: Option[A])
+case class Last[A](last: Option[A])
 
 object Monoid {
   /**

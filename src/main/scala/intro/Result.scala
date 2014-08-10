@@ -118,7 +118,7 @@ sealed trait Result[A] {
    *  = Ok(10)
    *
    * scala> Fail[Int](NotEnoughInput) ||| Fail[Int](UnexpectedInput("?"))
-   *  = Fail(NotEnoughInput)
+   *  = Fail[Int](UnexpectedInput("?"))
    */
   def |||(alternative: => Result[A]): Result[A] =
     ???
@@ -153,7 +153,7 @@ object Result {
    * scala> Lists.sequence(List[Result[Int]](Ok(1), Fail(NotEnoughInput), Ok(3)))
    * resX: Result[List[Int]] = Fail(NotEnoughInput)
    */
-  def sequence[A](xs: List[Option[A]]): Option[List[A]] =
+  def sequence[A](xs: List[Result[A]]): Result[List[A]] =
     ???
 }
 
