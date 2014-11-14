@@ -28,10 +28,8 @@ sealed trait Optional[A] {
   def fold[X](
     full: A => X,
     empty: => X
-  ): X = this match {
-    case Full(a) => full(a)
-    case Empty() => empty
-  }
+  ): X =
+    ???
 
   /*
    * Implement map for Optional[A].
@@ -47,7 +45,7 @@ sealed trait Optional[A] {
    *  = Emptyy()
    */
   def map[B](f: A => B): Optional[B] =
-    fold(a => Full(f(a)), Empty[B])
+    ???
 
   /*
    * Implement flatMap.
@@ -67,7 +65,7 @@ sealed trait Optional[A] {
    * Advanced: Try using fold.
    */
   def flatMap[B](f: A => Optional[B]): Optional[B] =
-    fold(f, Empty[B]())
+    ???
 
   /*
    * Extract the value if it is success case otherwise use default value.
@@ -80,7 +78,7 @@ sealed trait Optional[A] {
    *  = 10
    */
   def getOrElse(otherwise: => A): A =
-    fold(x => x, otherwise)
+    ???
 
   /*
    * Implement choice, take this result if successful otherwise take
@@ -99,7 +97,7 @@ sealed trait Optional[A] {
    *  = Empty()
    */
   def |||(alternative: => Optional[A]): Optional[A] =
-    fold(_ => this, alternative)
+    ???
 }
 
 case class Full[A](a: A) extends Optional[A]
