@@ -17,6 +17,12 @@ case class Parser[A](run: String => Result[ParseState[A]]) {
   /**
    * Return a parser with the function `f` applied to the
    * output of that parser.
+   *
+   * scala> (Parser.value(5) map (x => x + 7)).run("hello")
+   *   = Ok(ParseState(hello,12))
+   *
+   * scala> (Parser.failed[Int](NotEnoughInput) map (x => x + 7)).run("hello")
+   *   = Fail(NotEnoughInput)
    */
   def map[B](f: A => B): Parser[B] =
     ???
@@ -29,6 +35,12 @@ case class Parser[A](run: String => Result[ParseState[A]]) {
    *
    * - if that parser fails with an error, return a parser with
    *   that error
+   *
+   * scala> (Parser.value(5) flatMap (x => Parser.value(x + 7))).run("hello")
+   *   = Ok(ParseState(hello,12))
+   *
+   * scala> (Parser.failed[Int](NotEnoughInput) flatMap (x => Parser.value(x + 7))).run("hello")
+   *   = Fail(NotEnoughInput)
    */
   def flatMap[B](f: A => Parser[B]): Parser[B] =
     ???
@@ -41,6 +53,12 @@ case class Parser[A](run: String => Result[ParseState[A]]) {
    * - if that parser succeeds, run the next parser with the updated input
    *
    * - if that parser fails with an error, return a parser with that error
+   *
+   * scala> (Parser.value(5) >>> Parser.value(7)).run("hello")
+   *   = Ok(ParseState(hello,7))
+   *
+   * scala> (Parser.failed(NotEnoughInput) >>> Parser.value(7)).run("hello")
+   *   = Fail(NotEnoughInput)
    */
   def >>>[B](parser: => Parser[B]): Parser[B] =
     ???
@@ -53,6 +71,12 @@ case class Parser[A](run: String => Result[ParseState[A]]) {
    *  - if the first parser succeeds then use this parser
    *
    *  - if the second parser succeeds then try the second parser
+   *
+   * scala> (Parser.value(5) ||| Parser.value(7)).run("hello")
+   *   = Ok(ParseState(hello,5))
+   *
+   * scala> (Parser.failed[Int](NotEnoughInput) ||| Parser.value(7)).run("hello")
+   *   = Ok(ParseState(hello,7))
    */
   def |||(f: => Parser[A]): Parser[A] =
     ???
@@ -85,6 +109,9 @@ object Parser {
    *
    * scala> Parser.character.run("hello")
    *  = Ok(ParseState(ello, h))
+   *
+   * scala> Parser.character.run("")
+   *  = Fail(NotEnoughInput)
    */
   def character: Parser[Char] =
     ???
@@ -338,6 +365,9 @@ object PersonParser {
    * An person record is the following parts, each seperated by one or more spaces.
    *
    *  <name> <age> <phone> <address>
+   *
+   * scala> PersonParser.personParser.run("Homer 39 555.123.939# 742 evergreen")
+   *  = Ok(ParseState(,Person(Homer,39,555.123.939#,Address(742,evergreen))))
    */
   def personParser: Parser[Person] =
     ???
