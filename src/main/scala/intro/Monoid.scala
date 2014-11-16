@@ -98,7 +98,7 @@ object Monoid {
   /**
    * Exercise 12
    *
-   * Sum all the elements in the lest using the Monoid for A.
+   * Sum all the elements in the list using the Monoid for A.
    *
    * scala> sum(List("hello", " ", "world"))
    *  = "hello world"
