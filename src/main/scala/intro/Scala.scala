@@ -2,7 +2,7 @@ package course
 
 
 /*
- * The following is a high level guide of what scala feautes we
+ * The following is a high level guide of what scala features we
  * need to understand to get started.
  */
 object Scala {
