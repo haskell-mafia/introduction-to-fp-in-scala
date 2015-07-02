@@ -1,4 +1,4 @@
-# Introduction to FP in Scala [![Build Status](https://travis-ci.org/ambiata/introduction-to-fp-in-scala.svg?branch=travis_ci)](https://travis-ci.org/ambiata/introduction-to-fp-in-scala)
+# Introduction to FP in Scala [![Build Status](https://travis-ci.org/ambiata/introduction-to-fp-in-scala.svg)](https://travis-ci.org/ambiata/introduction-to-fp-in-scala)
 This is the base project for the workshop.
 
 __note__: please test your environment before you arrive so we can get started quickly on the day.
