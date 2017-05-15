@@ -33,7 +33,7 @@ object Lists {
    *
    * {{{
    *   List[A]#foldRight[B](z: B)(f: (A, B) => B)
-   *   List[A]#foldLeft[B](z: B)(f: (B, A) => A)
+   *   List[A]#foldLeft[B](z: B)(f: (B, A) => B)
    * }}}
    *
    */
