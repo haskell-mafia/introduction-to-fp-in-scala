@@ -6,7 +6,7 @@ package intro
  * or may not be set. An optional may either be _Full_ and contain
  * a value _or_ be _Empty_ and not contain a value.
  *
- * This is directly equivelant to the Option type in the scala
+ * This is directly equivalent to the Option type in the scala
  * standard library where Some -> Full, and None -> Empty.
  */
 sealed trait Optional[A] {
